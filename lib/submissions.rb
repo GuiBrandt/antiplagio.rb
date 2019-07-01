@@ -3,8 +3,6 @@ require 'json'
 
 # TODO: Se já houver uma submissão do mesmo usuário para a mesma questão,
 # atualizar ao invés de criar outra
-
-# TODO: Implementar ignorar nomes de variável
 class Submission
     attr_reader :timestamp, :content, :fingerprint, :hash_positions
 

@@ -2,6 +2,7 @@
 # Disponível em: http://theory.stanford.edu/~aiken/publications/papers/sigmod03.pdf
 
 require 'xxhash'
+require_relative 'cleaner'
 
 XXHASH_SEED = 42
 
@@ -14,23 +15,7 @@ module Winnowing
         K = NOISE_THRESHOLD
 
         def initialize(string)
-            @string, @position_map = clean(string)
-        end
-
-        # TODO: Otimizar. De preferência não usar regex em cada caractere
-        def clean(string)
-            result = ""
-            removed = []
-    
-            string.chars.each_with_index do |c, i| 
-                if c =~ /\w/
-                    result << c.downcase
-                else
-                    removed << result.size
-                end
-            end
-    
-            return result, removed
+            @string, @position_map = Cleaner.parse(string)
         end
 
         def hashes
