@@ -6,8 +6,8 @@ require 'xxhash'
 XXHASH_SEED = 42
 
 module Winnowing
-    GUARANTEE_THRESHOLD = 8
-    NOISE_THRESHOLD = 5
+    GUARANTEE_THRESHOLD = 30
+    NOISE_THRESHOLD = 6
     WINDOW_SIZE = GUARANTEE_THRESHOLD - NOISE_THRESHOLD + 1
 
     class WindowedHashString
@@ -73,6 +73,8 @@ module Winnowing
     end
 
     def self.winnow(text)
+        raise 'String too short' if text.size < WINDOW_SIZE
+
         Enumerator.new do |enum|
             processed = WindowedHashString.new(text)
             argmin = 0
