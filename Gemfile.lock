@@ -26,7 +26,7 @@ GEM
     mustermann (1.0.3)
     os (1.0.1)
     public_suffix (3.1.1)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rack-protection (2.0.5)
       rack
     rspec (3.8.0)
